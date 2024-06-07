@@ -5,6 +5,65 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>HELLO,WORLD!!!!!!!!!</h1>
+<!-- название страницы -->
+<h1>StudentPerformance</h1>
+
+<!-- таблица студентов -->
+<table border="1" cellpadding="5" cellspacing="0" align="left">
+    <tr>
+        <th>Student</th>
+    </tr>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Patronymic</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.first_name }}</td>
+        <td>{{ student.last_name }}</td>
+        <td>{{ student.patronymic }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- таблица предметов -->
+<table border="1" cellpadding="5" cellspacing="0" align="left" style="margin-left: 40px">
+    <tr>
+        <th>Subject</th>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <th>Teacher</th>
+        <th>Hours</th>
+    </tr>
+    {% for subject in subjects %}
+    <tr>
+        <td>{{ subject.name }}</td>
+        <td>{{ subject.teacher }}</td>
+        <td>{{ subject.hours }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- таблица оценок -->
+<table border="1" cellpadding="5" cellspacing="0" align="left" style="margin-left: 40px;">
+    <tr>
+        <th>Grade</th>
+    </tr>
+    <tr>
+        <th>Student</th>
+        <th>Subject</th>
+        <th>Grade</th>
+    </tr>
+    {% for grade in grades %}
+    <tr>
+        <td>{{ grade.student }}</td>
+        <td>{{ grade.subject }}</td>
+        <td>{{ grade.grade }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 </body>
 </html>
