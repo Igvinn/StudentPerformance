@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from StudentPerformanceApp . views import index_page
+from StudentPerformanceApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index_page)
+    path('', views.index_page, name='index'),
 ]
