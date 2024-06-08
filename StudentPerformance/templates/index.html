@@ -81,5 +81,75 @@
     {% endfor %}
 </table>
 
+<!-- таблица лучший студент -->
+<table border="1" cellpadding="5" cellspacing="0" align="right" style="margin-right: 100px;">
+     <tr>
+        <th colspan="4">Best Student</th>
+    </tr>
+    <tr>
+        <th>Student</th>
+        <th>Average Grade</th>
+    </tr>
+    {% if best_student %}
+    <tr>
+        <td>{{ best_student.student__first_name }} {{ best_student.student__last_name }} {{ best_student.student__patronymic }}</td>
+        <td>{{ best_student.avg_grade|floatformat:2 }}</td>
+    </tr>
+    {% endif %}
+</table>
+
+<!-- таблица худший студент -->
+<table border="1" cellpadding="5" cellspacing="0" align="right" style="margin: 40px 100px 0px 0px;">
+     <tr>
+        <th colspan="4">Worst Student</th>
+    </tr>
+    <tr>
+        <th>Student</th>
+        <th>Average Grade</th>
+    </tr>
+    {% if worst_student %}
+    <tr>
+        <td>{{ worst_student.student__first_name }} {{ worst_student.student__last_name }} {{ worst_student.student__patronymic }}</td>
+        <td>{{ worst_student.avg_grade|floatformat:2 }}</td>
+    </tr>
+    {% endif %}
+</table>
+
+<!-- средние баллы по дисциплине -->
+<table border="1" cellpadding="5" cellspacing="0" align="right" style="margin: 40px 100px 0px 0px;">
+    <tr>
+        <th colspan="4">Subject Average</th>
+    </tr>
+    <tr>
+        <th>Subject</th>
+        <th>Teacher</th>
+        <th>Average Grade</th>
+    </tr>
+    {% for subject_avg in subject_avg_grades %}
+    <tr>
+        <td>{{ subject_avg.subject__name }}</td>
+        <td>{{ subject_avg.subject__teacher }}</td>
+        <td>{{ subject_avg.avg_grade|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- средние баллы студента -->
+<table border="1" cellpadding="5" cellspacing="0" align="right" style="margin: 240px -380px 0px 0px;">
+     <tr>
+        <th colspan="4">Student Average</th>
+    </tr>
+    <tr>
+        <th>Student</th>
+        <th>Average Grade</th>
+    </tr>
+    {% for student_avg in student_avg_grades %}
+    <tr>
+        <td>{{ student_avg.student__first_name }} {{ student_avg.student__last_name }} {{ student_avg.student__patronymic }}</td>
+        <td>{{ student_avg.avg_grade|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 </body>
 </html>

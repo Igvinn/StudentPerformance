@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Average Grades by Subject</h1>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Subject</th>
+        <th>Teacher</th>
+        <th>Average Grade</th>
+    </tr>
+    {% for subject_avg in subject_avg_grades %}
+    <tr>
+        <td>{{ subject_avg.subject__name }}</td>
+        <td>{{ subject_avg.subject__teacher }}</td>
+        <td>{{ subject_avg.avg_grade|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

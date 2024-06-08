@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Average Grades by Student</h1>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Student</th>
+        <th>Average Grade</th>
+    </tr>
+    {% for student_avg in student_avg_grades %}
+    <tr>
+        <td>{{ student_avg.student__first_name }} {{ student_avg.student__last_name }} {{ student_avg.student__patronymic }}</td>
+        <td>{{ student_avg.avg_grade|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
