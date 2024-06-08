@@ -1,3 +1,4 @@
+from django.db.models import Avg
 from django.shortcuts import render, redirect
 from .models import Student, Subject, Grade
 from .forms import StudentForm, SubjectForm, GradeForm
@@ -6,11 +7,20 @@ def index_page(request):
     students = Student.objects.all()
     subjects = Subject.objects.all()
     grades = Grade.objects.all()
+    best_student = Grade.objects.values('student__first_name', 'student__last_name', 'student__patronymic').annotate(avg_grade=Avg('grade')).order_by('-avg_grade').first()
+    worst_student = Grade.objects.values('student__first_name', 'student__last_name', 'student__patronymic').annotate(avg_grade=Avg('grade')).order_by('avg_grade').first()
+    subject_avg_grades = Grade.objects.values('subject__name', 'subject__teacher').annotate(avg_grade=Avg('grade'))
+    student_avg_grades = Grade.objects.values('student__first_name', 'student__last_name', 'student__patronymic').annotate(avg_grade=Avg('grade'))
     return render(request, 'index.html', {
         'students': students,
         'subjects': subjects,
-        'grades': grades
+        'grades': grades,
+        'best_student': best_student,
+        'worst_student': worst_student,
+        'subject_avg_grades': subject_avg_grades,
+        'student_avg_grades': student_avg_grades
     })
+
 
 def create_student(request):
     if request.method == 'POST':
@@ -89,3 +99,13 @@ def delete_grade(request, pk):
     grade = Grade.objects.get(pk=pk)
     grade.delete()
     return redirect('index')
+
+def subject_avg_grades(request):
+    subject_avg_grades = Grade.objects.values('subject__name', 'subject__teacher', 'student__first_name', 'student__last_name', 'student__patronymic', 'grade').annotate(avg_grade=Avg('grade'))
+    return render(request, 'subject_avg_grades.html', {'subject_avg_grades': subject_avg_grades})
+
+def student_avg_grades(request):
+    student_avg_grades = Grade.objects.values('student__first_name', 'student__last_name', 'student__patronymic', 'subject__name', 'grade').annotate(avg_grade=Avg('grade'))
+    return render(request, 'student_avg_grades.html', {'student_avg_grades': student_avg_grades})
+
+

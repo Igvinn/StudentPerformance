@@ -30,4 +30,6 @@ urlpatterns = [
     path('delete_student/<pk>/', views.delete_student, name='delete_student'),
     path('delete_subject/<pk>/', views.delete_subject, name='delete_subject'),
     path('delete_grade/<pk>/', views.delete_grade, name='delete_grade'),
+    path('subject_avg_grades/', views.subject_avg_grades, name='subject_avg_grades'),
+    path('student_avg_grades/', views.student_avg_grades, name='student_avg_grades'),
 ]
