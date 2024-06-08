@@ -5,43 +5,54 @@
     <title>Title</title>
 </head>
 <body>
-<!-- название страницы -->
-<h1>StudentPerformance</h1>
+
+<!-- название проекта -->
+<h1>StudentsPerformance</h1>
 
 <!-- таблица студентов -->
 <table border="1" cellpadding="5" cellspacing="0" align="left">
     <tr>
-        <th>Student</th>
+        <th colspan="4">Students <a href="{% url 'create_student' %}">(Create Students)</a></th>
     </tr>
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Patronymic</th>
+        <th>Actions</th>
     </tr>
     {% for student in students %}
     <tr>
         <td>{{ student.first_name }}</td>
         <td>{{ student.last_name }}</td>
         <td>{{ student.patronymic }}</td>
+        <td>
+            <a href="{% url 'update_student' student.pk %}">Edit</a>
+            <a href="{% url 'delete_student' student.pk %}">Delete</a>
+        </td>
     </tr>
     {% endfor %}
 </table>
 
 <!-- таблица предметов -->
-<table border="1" cellpadding="5" cellspacing="0" align="left" style="margin-left: 40px">
+<table border="1" cellpadding="5" cellspacing="0" align="left" style="margin-left: 40px;">
     <tr>
-        <th>Subject</th>
+        <th colspan="4">Subjects <a href="{% url 'create_subject' %}">(Create Subjects)</a></th>
     </tr>
     <tr>
         <th>Name</th>
         <th>Teacher</th>
         <th>Hours</th>
+        <th>Actions</th>
     </tr>
     {% for subject in subjects %}
     <tr>
         <td>{{ subject.name }}</td>
         <td>{{ subject.teacher }}</td>
         <td>{{ subject.hours }}</td>
+        <td>
+            <a href="{% url 'update_subject' subject.pk %}">Edit</a>
+            <a href="{% url 'delete_subject' subject.pk %}">Delete</a>
+        </td>
     </tr>
     {% endfor %}
 </table>
@@ -49,18 +60,23 @@
 <!-- таблица оценок -->
 <table border="1" cellpadding="5" cellspacing="0" align="left" style="margin-left: 40px;">
     <tr>
-        <th>Grade</th>
+        <th colspan="4">Grades <a href="{% url 'create_grade' %}">(Create Grade)</a></th>
     </tr>
     <tr>
         <th>Student</th>
         <th>Subject</th>
         <th>Grade</th>
+        <th>Actions</th>
     </tr>
     {% for grade in grades %}
     <tr>
         <td>{{ grade.student }}</td>
         <td>{{ grade.subject }}</td>
         <td>{{ grade.grade }}</td>
+        <td>
+            <a href="{% url 'update_grade' grade.pk %}">Edit</a>
+            <a href="{% url 'delete_grade' grade.pk %}">Delete</a>
+        </td>
     </tr>
     {% endfor %}
 </table>
